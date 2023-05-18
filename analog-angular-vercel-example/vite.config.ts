@@ -30,9 +30,8 @@ export default defineConfig(({ mode }) => {
         nitro: {
           rootDir: './analog-angular-vercel-example',
           output: {
-            dir: '../../dist/./analog-angular-vercel-example/analog/.vercel/output',
-            publicDir:
-              '../../dist/./analog-angular-vercel-example/analog/.vercel/output/static',
+            dir: '../../.vercel/output',
+            publicDir: '../../.vercel/output/static',
           },
           publicAssets: [
             { dir: `../../dist/./analog-angular-vercel-example/client` },
