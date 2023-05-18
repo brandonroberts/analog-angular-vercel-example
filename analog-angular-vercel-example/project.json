@@ -1,0 +1,70 @@
+{
+  "name": "analog-angular-vercel-example",
+  "$schema": "../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "./analog-angular-vercel-example/src",
+  "targets": {
+    "build": {
+      "executor": "@nx/vite:build",
+      "outputs": [
+        "{options.outputPath}",
+        "dist/./analog-angular-vercel-example/.nitro",
+        "dist/./analog-angular-vercel-example/ssr",
+        "dist/./analog-angular-vercel-example/analog"
+      ],
+      "options": {
+        "main": "./analog-angular-vercel-example/src/main.ts",
+        "configFile": "./analog-angular-vercel-example/vite.config.ts",
+        "outputPath": "dist/./analog-angular-vercel-example/client"
+      },
+      "defaultConfiguration": "production",
+      "configurations": {
+        "development": {
+          "mode": "development"
+        },
+        "production": {
+          "sourcemap": false,
+          "mode": "production"
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/vite:dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "analog-angular-vercel-example:build",
+        "port": 4200
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "analog-angular-vercel-example:build:development",
+          "hmr": true
+        },
+        "production": {
+          "buildTarget": "analog-angular-vercel-example:build:production"
+        }
+      }
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "analog-angular-vercel-example:build"
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "./analog-angular-vercel-example/**/*.ts",
+          "./analog-angular-vercel-example/**/*.html"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nx/vite:test",
+      "outputs": ["./analog-angular-vercel-example/coverage"]
+    }
+  },
+  "tags": []
+}
